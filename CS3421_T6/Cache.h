@@ -1,41 +1,56 @@
 #pragma once
 #include <stdint.h>
 #include <vector>
-#include <list>
-#include <unordered_map>
 #include "PetesList.h"
-#include <thread>
 
+//Defines the data structure
+// of a given trace record
 struct AddressRecord {
 	uint32_t word0;
 	uint32_t word1;
 };
 
-class Cache
-{
+class Cache{
 private:
 	struct Directory {
-		uint16_t Tag;
-		uint8_t CachedBytes;
+		uint16_t Tag{ 0 };
+		//#Cached bytes is not important, as we're not
+		// actually caching any data.
+		// Instead, this is 0 if the directory has not yet been used
+		// or 1 if it has
+		uint8_t CachedBytes{ 0 };
 	};
 	struct Set {
-		PetesList<Directory*> pList;
-		std::vector<PetesList<Directory*>::PetesNode*> NodeArr;
+		//Linked list of directories in a set
+		PetesList<Directory*> DirectoryList;
 
+		//Vector of directory nodes too, for faster searching
+		std::vector<PetesList<Directory*>::PetesNode*> NodeVector;
+		PetesList<Directory*>::PetesNode* *NodeArray;
 	};
-	std::vector<Set> cache;
+
+	//Vector of the cache sets
+	std::vector<Set> CacheSetVector;
+
+	//Pointer that is set to the raw array of the above vector
+	Set *CacheSets;
+
+	uint16_t L, K, N;		//Number of cached bytes, directories, and sets
+	uint8_t Lb, Kb, Nb;		//The number of bits required to express each of the above
+	uint16_t Lbm, Kbm, Nbm;	//The bitmasks required to compute the above
+
+	// Member function representing a memory access
+	uint8_t MemoryAccess(uint32_t PhyAddr);
 
 public:
+	//Struct of data representing the results of cache analysis
 	struct CacheAnalysis {
 		uint32_t Hits, Misses, Accesses;
 	};
 	Cache(uint16_t _L, uint16_t _K, uint16_t _N);
 	~Cache();
 
-	CacheAnalysis Analyse(const std::vector<AddressRecord> &Records);
-private:
-	uint8_t MemoryAccess(uint32_t PhyAddr);
-	uint16_t L, K, N;
-	uint8_t Lbm, Kbm, Nbm;
+	//Function called to actually analyse the cache on a given data set
+	CacheAnalysis Analyse(const std::vector<AddressRecord> &Records);	
 };
 
