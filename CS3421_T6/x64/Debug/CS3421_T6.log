@@ -1,9 +1,0 @@
-﻿  Cache.cpp
-d:\projects\c++\vs2015\cs3421_t6\cs3421_t6\cache.cpp(32): warning C4552: '>>': operator has no effect; expected operator with side-effect
-d:\projects\c++\vs2015\cs3421_t6\cs3421_t6\cache.cpp(34): warning C4552: '>>': operator has no effect; expected operator with side-effect
-d:\projects\c++\vs2015\cs3421_t6\cs3421_t6\cache.cpp(36): warning C4552: '>>': operator has no effect; expected operator with side-effect
-d:\projects\c++\vs2015\cs3421_t6\cs3421_t6\cache.cpp(39): warning C4805: '|': unsafe mix of type 'int' and type 'bool' in operation
-  CS3421T6.cpp
-  Generating Code...
-  CS3421_T6.vcxproj -> D:\Projects\c++\VS2015\CS3421_T6\x64\Debug\CS3421_T6.exe
-  CS3421_T6.vcxproj -> D:\Projects\c++\VS2015\CS3421_T6\x64\Debug\CS3421_T6.pdb (Partial PDB)

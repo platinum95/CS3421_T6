@@ -29,5 +29,8 @@
     <ClInclude Include="Cache.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PetesList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
