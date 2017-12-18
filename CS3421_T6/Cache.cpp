@@ -48,40 +48,6 @@ Cache::~Cache(){
 	}
 }
 
-
-Cache::CacheAnalysis Cache::Analyse(const std::vector<AddressRecord>& Records){
-	uint32_t hits = 0, misses = 0, accesses = 0;
-	//Get pointer to vector data for speed
-	auto RecordData = Records.data();
-	auto RecordCount = Records.size();
-
-	for(int i = 0; i < RecordCount; i++){
-		auto record = RecordData[i];
-		//Ignore all but data R/W and instruction R
-		if ((record.word0 & 0x80000000) == 0 || (((record.word0 & 0x40000000) == 0) && ((record.word0 & 0x20000000) != 0)))
-			continue;
-
-		//Get the Physical address and burst count
-		uint32_t word0Temp = record.word0;
-		uint32_t PhyAddr = word0Temp & 0x7FFFFF;
-		word0Temp >>= 27;
-		uint8_t BurstCount = (word0Temp & 0x3) + 1;
-		
-		//Log the number of accesses
-		accesses += BurstCount + 1;
-		
-		//Check if the address is already in the cache
-		auto hit = MemoryAccess(PhyAddr);
-		
-		//Log the increase in hits/misses
-		hits += BurstCount + hit;
-		misses += 1 - hit;
-		continue;
-	}
-	return { hits, misses, accesses };
-}
-
-
 uint8_t Cache::MemoryAccess(uint32_t PhyAddr){
 
 	//Ignore the offset line. Take into account

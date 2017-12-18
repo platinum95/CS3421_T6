@@ -1,0 +1,4 @@
+﻿  CS3421T6.cpp
+x:\cg\cs3421_t6\cs3421_t6\cs3421t6.cpp(70): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  CS3421_T6.vcxproj -> X:\CG\CS3421_T6\x64\Debug\CS3421_T6.exe
+  CS3421_T6.vcxproj -> X:\CG\CS3421_T6\x64\Debug\CS3421_T6.pdb (Partial PDB)

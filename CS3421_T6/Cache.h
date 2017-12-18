@@ -39,18 +39,11 @@ private:
 	uint8_t Lb, Kb, Nb;		//The number of bits required to express each of the above
 	uint16_t Lbm, Kbm, Nbm;	//The bitmasks required to compute the above
 
-	// Member function representing a memory access
-	uint8_t MemoryAccess(uint32_t PhyAddr);
-
 public:
-	//Struct of data representing the results of cache analysis
-	struct CacheAnalysis {
-		uint32_t Hits, Misses, Accesses;
-	};
 	Cache(uint16_t _L, uint16_t _K, uint16_t _N);
 	~Cache();
 
-	//Function called to actually analyse the cache on a given data set
-	CacheAnalysis Analyse(const std::vector<AddressRecord> &Records);	
+	uint8_t MemoryAccess(uint32_t PhyAddr);
+	
 };
 

@@ -1,0 +1,9 @@
+﻿  CS3421T6.cpp
+CS3421T6.cpp(70): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+  Generating code
+  2 of 352 functions ( 0.6%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    8 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  CS3421_T6.vcxproj -> X:\CG\CS3421_T6\x64\Release\CS3421_T6.exe
+  CS3421_T6.vcxproj -> X:\CG\CS3421_T6\x64\Release\CS3421_T6.pdb (Full PDB)
